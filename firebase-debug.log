@@ -1,0 +1,17 @@
+[debug] [2020-06-20T18:05:07.753Z] ----------------------------------------------------------------------
+[debug] [2020-06-20T18:05:07.757Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2020-06-20T18:05:07.757Z] CLI Version:   8.4.3
+[debug] [2020-06-20T18:05:07.758Z] Platform:      darwin
+[debug] [2020-06-20T18:05:07.758Z] Node Version:  v12.16.1
+[debug] [2020-06-20T18:05:07.759Z] Time:          Sat Jun 20 2020 13:05:07 GMT-0500 (Central Daylight Time)
+[debug] [2020-06-20T18:05:07.760Z] ----------------------------------------------------------------------
+[debug] [2020-06-20T18:05:07.760Z] 
+[debug] [2020-06-20T18:05:07.778Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-20T18:05:07.779Z] > authorizing via signed-in user
+[debug] [2020-06-20T18:05:07.779Z] [iam] checking project streaming-analytics-showcase for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-06-20T18:05:07.785Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/streaming-analytics-showcase:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-06-20T18:05:08.124Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 20 Jun 2020 18:05:08 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=224","alt-svc":"h3-28=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-06-20T18:05:08.127Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/streaming-analytics-showcase/serviceAccounts/streaming-analytics-showcase@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-06-20T18:05:08.418Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 20 Jun 2020 18:05:08 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-28=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}

@@ -14,7 +14,7 @@
         </v-row>
       </v-col>
     </v-row>
-    <v-row class="text-center" v-if="result">
+    <!-- <v-row class="text-center" v-if="result">
       <v-col class="mb-5" cols="12">
         <v-row justify="center">
           <h3>Latest Prediction</h3>
@@ -26,11 +26,34 @@
         <p>Will deposit confidence: <span :class="class2">{{class2Confidence}}</span></p>
         </v-row>
       </v-col>
+    </v-row> -->
+    <v-row>
+      <v-col cols="12">
+        <v-simple-table fixed-header height="1000px">
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">Duration</th>
+                <th class="text-left">Will Deposit Confidence</th>
+                <th class="text-left">Wont Deposit Confidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in predictions" :key="item.id">
+                <td>{{ item.duration }}</td>
+                <td>{{ item.class1Confidence }}</td>
+                <td>{{ item.class2Confidence }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+  import { firestore } from '@/main'
   export default {
     data: () => ({
       class1: '',
@@ -47,7 +70,13 @@
         'Item 4',
       ],
       duration: 0,
+      predictions: []
     }),
+    firestore () {
+      return {
+        predictions: firestore.collection('predictions').orderBy('timestamp', 'desc').limit(20)
+      }
+    },
     methods: {
       reset () {
         this.$refs.form.reset()
@@ -55,31 +84,41 @@
         this.class2Confidence = -1
         this.result=false
       },
+      // async predict () {
+      //   this.waiting=true
+      //   const BASE_URL = 'https://bank-marketing-endpoint-o2b4bu4ala-uc.a.run.app'
+      //   const response = await fetch(`${BASE_URL}?duration=${this.duration}`)
+      //   const data = await response.json();
+      //   this.class1Confidence = data[0].score
+      //   this.class2Confidence = data[1].score
+      //   if (this.class1Confidence >= 0.90) {
+      //     this.class1 = 'success'
+      //     this.class2 = 'error'
+      //   } else if (this.class1Confidence >= 0.60 && this.class1Confidence < 0.90) {
+      //     this.class1 = 'warning'
+      //     this.class2 = 'error'
+      //   } else if (this.class2Confidence >= 0.90) {
+      //     this.class1 = 'error'
+      //     this.class2 = 'success'
+      //   } else if (this.class2Confidence >= 0.60 && this.class2Confidence < 0.90) {
+      //     this.class1 = 'error'
+      //     this.class2 = 'warning'
+      //   } else {
+      //     this.class1 = 'error'
+      //     this.class2 = 'error'
+      //   }
+      //   this.result=true
+      //   this.waiting=false
+      // }
       async predict () {
         this.waiting=true
-        const BASE_URL = 'https://bank-marketing-endpoint-o2b4bu4ala-uc.a.run.app'
-        const response = await fetch(`${BASE_URL}?duration=${this.duration}`)
-        const data = await response.json();
-        this.class1Confidence = data[0].score
-        this.class2Confidence = data[1].score
-        if (this.class1Confidence >= 0.90) {
-          this.class1 = 'success'
-          this.class2 = 'error'
-        } else if (this.class1Confidence >= 0.60 && this.class1Confidence < 0.90) {
-          this.class1 = 'warning'
-          this.class2 = 'error'
-        } else if (this.class2Confidence >= 0.90) {
-          this.class1 = 'error'
-          this.class2 = 'success'
-        } else if (this.class2Confidence >= 0.60 && this.class2Confidence < 0.90) {
-          this.class1 = 'error'
-          this.class2 = 'warning'
-        } else {
-          this.class1 = 'error'
-          this.class2 = 'error'
+        const prediction = {
+          duration: this.duration,
+          timestamp: new Date()
         }
-        this.result=true
+        await firestore.collection('predictions').add(prediction)
         this.waiting=false
+        this.reset()
       }
     },
   }
