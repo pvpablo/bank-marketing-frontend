@@ -7,9 +7,6 @@ steps:
     - name: node
       entrypoint: npm
       args: ['run', 'build']
-    # Deploy only hosting to Firebase
-    - name: gcr.io/streaming-analytics-showcase/firebase
-      args: ['deploy', '--project=streaming-analytics-showcase', '--only=hosting']
       env:
       - 'VUE_APP_FIREBASE_API_KEY=${_VUE_APP_FIREBASE_API_KEY}'
       - 'VUE_APP_FIREBASE_APP_ID=${_VUE_APP_FIREBASE_APP_ID}'
@@ -17,3 +14,6 @@ steps:
       - 'VUE_APP_FIREBASE_DATABASE_URL=${_VUE_APP_FIREBASE_DATABASE_URL}'
       - 'VUE_APP_FIREBASE_MESSAGE_SENDER_ID=${_VUE_APP_FIREBASE_MESSAGE_SENDER_ID}'
       - 'VUE_APP_FIREBASE_PROJECT_ID=${_VUE_APP_FIREBASE_PROJECT_ID}'
+    # Deploy only hosting to Firebase
+    - name: gcr.io/streaming-analytics-showcase/firebase
+      args: ['deploy', '--project=streaming-analytics-showcase', '--only=hosting']
