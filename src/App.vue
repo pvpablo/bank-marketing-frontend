@@ -6,7 +6,7 @@
       dark
     >
       <div class="d-flex align-center">
-        <h1>Bank Marketing Predictor</h1>
+        <h1>Bank Marketing Predictor v2</h1>
       </div>
       <v-spacer></v-spacer>
     </v-app-bar>
