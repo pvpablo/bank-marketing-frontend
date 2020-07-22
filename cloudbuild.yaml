@@ -1,0 +1,12 @@
+steps:
+    # Install dependencies
+    - name: node
+      entrypoint: npm
+      args: ['install']
+    # Build the app
+    - name: node
+      entrypoint: npm
+      args: ['run', 'build']
+    #Deploy to Firebase
+    - name: gcr.io/streaming-analytics-showcase/firebase
+      args: ['deploy', '--project=streaming-analytics-showcase', '--only=hosting']
